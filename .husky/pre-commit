@@ -1,3 +1,7 @@
 #!/bin/sh
 
-cd packages/control-plane/admin-console && npx prettier --write "**/*.{js,jsx,ts,tsx,json,md}"
+# Format admin-console files
+echo "Formatting admin-console files..."
+cd packages/control-plane/admin-console && npx prettier --write "**/*.{js,jsx,ts,tsx,json,md}" || exit 1
+
+echo "Admin console formatting completed successfully!"
