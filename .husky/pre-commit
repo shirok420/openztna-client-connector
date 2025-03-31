@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cd packages/control-plane/admin-console && npx prettier --write "**/*.{js,jsx,ts,tsx,json,md}"
