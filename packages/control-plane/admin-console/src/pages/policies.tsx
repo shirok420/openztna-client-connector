@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { 
-  Box, 
-  Typography, 
-  Paper, 
-  Button, 
+import {
+  Box,
+  Typography,
+  Paper,
+  Button,
   Chip,
   Dialog,
   DialogActions,
@@ -25,18 +25,18 @@ import {
   List,
   ListItem,
   ListItemText,
-  IconButton
+  IconButton,
 } from '@mui/material';
-import { 
-  Add as AddIcon, 
-  Delete as DeleteIcon, 
-  Edit as EditIcon, 
+import {
+  Add as AddIcon,
+  Delete as DeleteIcon,
+  Edit as EditIcon,
   ExpandMore as ExpandMoreIcon,
   Security as SecurityIcon,
   DevicesOther as DevicesIcon,
   People as PeopleIcon,
   Apps as AppsIcon,
-  AddCircleOutline as AddCircleOutlineIcon
+  AddCircleOutline as AddCircleOutlineIcon,
 } from '@mui/icons-material';
 import Layout from '@/components/Layout';
 
@@ -61,21 +61,21 @@ const mockPolicies: Policy[] = [
           windows: '10.0.19044',
           macos: '12.0.0',
           ios: '16.0.0',
-          android: '13.0.0'
-        }
+          android: '13.0.0',
+        },
       },
       authentication: {
         mfaRequired: true,
         passwordComplexity: 'High',
         passwordExpiryDays: 90,
-        failedLoginAttempts: 5
+        failedLoginAttempts: 5,
       },
       networkSecurity: {
         vpnRequired: false,
         restrictedNetworks: ['public-wifi'],
-        allowedCountries: ['US', 'CA', 'UK', 'JP', 'AU']
-      }
-    }
+        allowedCountries: ['US', 'CA', 'UK', 'JP', 'AU'],
+      },
+    },
   },
   {
     id: 2,
@@ -96,21 +96,21 @@ const mockPolicies: Policy[] = [
           windows: '10.0.19044',
           macos: '12.0.0',
           ios: '16.0.0',
-          android: '13.0.0'
-        }
+          android: '13.0.0',
+        },
       },
       authentication: {
         mfaRequired: true,
         passwordComplexity: 'Very High',
         passwordExpiryDays: 60,
-        failedLoginAttempts: 3
+        failedLoginAttempts: 3,
       },
       networkSecurity: {
         vpnRequired: true,
         restrictedNetworks: ['public-wifi', 'hotel-wifi', 'airport-wifi'],
-        allowedCountries: ['US', 'CA']
-      }
-    }
+        allowedCountries: ['US', 'CA'],
+      },
+    },
   },
   {
     id: 3,
@@ -131,22 +131,22 @@ const mockPolicies: Policy[] = [
           windows: '10.0.19044',
           macos: '12.0.0',
           ios: '16.0.0',
-          android: '13.0.0'
-        }
+          android: '13.0.0',
+        },
       },
       authentication: {
         mfaRequired: true,
         passwordComplexity: 'Very High',
         passwordExpiryDays: 30,
-        failedLoginAttempts: 3
+        failedLoginAttempts: 3,
       },
       networkSecurity: {
         vpnRequired: true,
         restrictedNetworks: ['public-wifi', 'hotel-wifi', 'airport-wifi', 'cafe-wifi'],
-        allowedCountries: ['US']
-      }
-    }
-  }
+        allowedCountries: ['US'],
+      },
+    },
+  },
 ];
 
 export default function Policies() {
@@ -179,15 +179,16 @@ export default function Policies() {
     handleCloseDialog();
   };
 
-  const handlePolicyExpand = (policyId: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-    setExpandedPolicy(isExpanded ? policyId : false);
-  };
+  const handlePolicyExpand =
+    (policyId: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpandedPolicy(isExpanded ? policyId : false);
+    };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat('en-US', {
       dateStyle: 'medium',
-      timeStyle: 'short'
+      timeStyle: 'short',
     }).format(date);
   };
 
@@ -197,19 +198,15 @@ export default function Policies() {
         <Typography variant="h4" component="h1">
           Security Policies
         </Typography>
-        <Button 
-          variant="contained" 
-          startIcon={<AddIcon />}
-          onClick={() => handleOpenDialog('add')}
-        >
+        <Button variant="contained" startIcon={<AddIcon />} onClick={() => handleOpenDialog('add')}>
           Add Policy
         </Button>
       </Box>
 
       <Box sx={{ mb: 4 }}>
-        {policies.map((policy) => (
-          <Accordion 
-            key={policy.id} 
+        {policies.map(policy => (
+          <Accordion
+            key={policy.id}
             expanded={expandedPolicy === policy.id}
             onChange={handlePolicyExpand(policy.id)}
             sx={{ mb: 2 }}
@@ -219,19 +216,28 @@ export default function Policies() {
               aria-controls={`policy-${policy.id}-content`}
               id={`policy-${policy.id}-header`}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <SecurityIcon sx={{ mr: 2, color: 'primary.main' }} />
                   <Box>
                     <Typography variant="h6">{policy.name}</Typography>
-                    <Typography variant="body2" color="text.secondary">{policy.description}</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {policy.description}
+                    </Typography>
                   </Box>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Chip 
-                    label={policy.status} 
-                    color={policy.status === 'Active' ? 'success' : 'default'} 
-                    size="small" 
+                  <Chip
+                    label={policy.status}
+                    color={policy.status === 'Active' ? 'success' : 'default'}
+                    size="small"
                   />
                   <Typography variant="body2" color="text.secondary">
                     Applies to: {policy.appliesTo}
@@ -250,40 +256,59 @@ export default function Policies() {
                     <Divider sx={{ mb: 2 }} />
                     <List dense>
                       <ListItem>
-                        <ListItemText 
-                          primary="Disk Encryption" 
-                          secondary={policy.requirements.deviceSecurity.diskEncryption ? 'Required' : 'Not Required'} 
+                        <ListItemText
+                          primary="Disk Encryption"
+                          secondary={
+                            policy.requirements.deviceSecurity.diskEncryption
+                              ? 'Required'
+                              : 'Not Required'
+                          }
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Firewall" 
-                          secondary={policy.requirements.deviceSecurity.firewallEnabled ? 'Required' : 'Not Required'} 
+                        <ListItemText
+                          primary="Firewall"
+                          secondary={
+                            policy.requirements.deviceSecurity.firewallEnabled
+                              ? 'Required'
+                              : 'Not Required'
+                          }
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Antivirus" 
-                          secondary={policy.requirements.deviceSecurity.antivirusEnabled ? 'Required' : 'Not Required'} 
+                        <ListItemText
+                          primary="Antivirus"
+                          secondary={
+                            policy.requirements.deviceSecurity.antivirusEnabled
+                              ? 'Required'
+                              : 'Not Required'
+                          }
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Screen Lock" 
-                          secondary={policy.requirements.deviceSecurity.screenLockEnabled ? 'Required' : 'Not Required'} 
+                        <ListItemText
+                          primary="Screen Lock"
+                          secondary={
+                            policy.requirements.deviceSecurity.screenLockEnabled
+                              ? 'Required'
+                              : 'Not Required'
+                          }
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Minimum OS Versions" 
+                        <ListItemText
+                          primary="Minimum OS Versions"
                           secondary={
                             <>
-                              Windows: {policy.requirements.deviceSecurity.minOsVersion.windows}<br />
-                              macOS: {policy.requirements.deviceSecurity.minOsVersion.macos}<br />
-                              iOS: {policy.requirements.deviceSecurity.minOsVersion.ios}<br />
+                              Windows: {policy.requirements.deviceSecurity.minOsVersion.windows}
+                              <br />
+                              macOS: {policy.requirements.deviceSecurity.minOsVersion.macos}
+                              <br />
+                              iOS: {policy.requirements.deviceSecurity.minOsVersion.ios}
+                              <br />
                               Android: {policy.requirements.deviceSecurity.minOsVersion.android}
                             </>
-                          } 
+                          }
                         />
                       </ListItem>
                     </List>
@@ -298,27 +323,31 @@ export default function Policies() {
                     <Divider sx={{ mb: 2 }} />
                     <List dense>
                       <ListItem>
-                        <ListItemText 
-                          primary="Multi-Factor Authentication" 
-                          secondary={policy.requirements.authentication.mfaRequired ? 'Required' : 'Not Required'} 
+                        <ListItemText
+                          primary="Multi-Factor Authentication"
+                          secondary={
+                            policy.requirements.authentication.mfaRequired
+                              ? 'Required'
+                              : 'Not Required'
+                          }
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Password Complexity" 
-                          secondary={policy.requirements.authentication.passwordComplexity} 
+                        <ListItemText
+                          primary="Password Complexity"
+                          secondary={policy.requirements.authentication.passwordComplexity}
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Password Expiry" 
-                          secondary={`${policy.requirements.authentication.passwordExpiryDays} days`} 
+                        <ListItemText
+                          primary="Password Expiry"
+                          secondary={`${policy.requirements.authentication.passwordExpiryDays} days`}
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Failed Login Attempts" 
-                          secondary={`Lock after ${policy.requirements.authentication.failedLoginAttempts} attempts`} 
+                        <ListItemText
+                          primary="Failed Login Attempts"
+                          secondary={`Lock after ${policy.requirements.authentication.failedLoginAttempts} attempts`}
                         />
                       </ListItem>
                     </List>
@@ -333,29 +362,29 @@ export default function Policies() {
                     <Divider sx={{ mb: 2 }} />
                     <List dense>
                       <ListItem>
-                        <ListItemText 
-                          primary="VPN Required" 
-                          secondary={policy.requirements.networkSecurity.vpnRequired ? 'Yes' : 'No'} 
+                        <ListItemText
+                          primary="VPN Required"
+                          secondary={policy.requirements.networkSecurity.vpnRequired ? 'Yes' : 'No'}
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Restricted Networks" 
+                        <ListItemText
+                          primary="Restricted Networks"
                           secondary={
-                            policy.requirements.networkSecurity.restrictedNetworks.length > 0 
+                            policy.requirements.networkSecurity.restrictedNetworks.length > 0
                               ? policy.requirements.networkSecurity.restrictedNetworks.join(', ')
                               : 'None'
-                          } 
+                          }
                         />
                       </ListItem>
                       <ListItem>
-                        <ListItemText 
-                          primary="Allowed Countries" 
+                        <ListItemText
+                          primary="Allowed Countries"
                           secondary={
-                            policy.requirements.networkSecurity.allowedCountries.length > 0 
+                            policy.requirements.networkSecurity.allowedCountries.length > 0
                               ? policy.requirements.networkSecurity.allowedCountries.join(', ')
                               : 'All'
-                          } 
+                          }
                         />
                       </ListItem>
                     </List>
@@ -366,18 +395,18 @@ export default function Policies() {
                     <Typography variant="body2" color="text.secondary">
                       Last updated: {formatDate(policy.updatedAt)}
                     </Typography>
-                    <Button 
-                      size="small" 
-                      variant="outlined" 
+                    <Button
+                      size="small"
+                      variant="outlined"
                       startIcon={<EditIcon />}
                       onClick={() => handleOpenDialog('edit', policy)}
                     >
                       Edit
                     </Button>
-                    <Button 
-                      size="small" 
-                      variant="outlined" 
-                      color="error" 
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      color="error"
                       startIcon={<DeleteIcon />}
                     >
                       Delete
@@ -395,8 +424,8 @@ export default function Policies() {
         <DialogTitle>{dialogMode === 'add' ? 'Add New Policy' : 'Edit Policy'}</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ mb: 2 }}>
-            {dialogMode === 'add' 
-              ? 'Create a new security policy to protect endpoints.' 
+            {dialogMode === 'add'
+              ? 'Create a new security policy to protect endpoints.'
               : 'Update the security policy settings.'}
           </DialogContentText>
           <Grid container spacing={2}>
@@ -451,7 +480,7 @@ export default function Policies() {
                 defaultValue={selectedPolicy?.appliesTo || ''}
               />
             </Grid>
-            
+
             {/* Device Security Section */}
             <Grid item xs={12}>
               <Typography variant="h6" sx={{ mt: 2, mb: 1 }}>
@@ -462,8 +491,10 @@ export default function Policies() {
             <Grid item xs={12} sm={6}>
               <FormControlLabel
                 control={
-                  <Switch 
-                    defaultChecked={selectedPolicy?.requirements?.deviceSecurity?.diskEncryption || true} 
+                  <Switch
+                    defaultChecked={
+                      selectedPolicy?.requirements?.deviceSecurity?.diskEncryption || true
+                    }
                   />
                 }
                 label="Require Disk Encryption"
@@ -472,8 +503,10 @@ export default function Policies() {
             <Grid item xs={12} sm={6}>
               <FormControlLabel
                 control={
-                  <Switch 
-                    defaultChecked={selectedPolicy?.requirements?.deviceSecurity?.firewallEnabled || true} 
+                  <Switch
+                    defaultChecked={
+                      selectedPolicy?.requirements?.deviceSecurity?.firewallEnabled || true
+                    }
                   />
                 }
                 label="Require Firewall"
@@ -482,8 +515,10 @@ export default function Policies() {
             <Grid item xs={12} sm={6}>
               <FormControlLabel
                 control={
-                  <Switch 
-                    defaultChecked={selectedPolicy?.requirements?.deviceSecurity?.antivirusEnabled || true} 
+                  <Switch
+                    defaultChecked={
+                      selectedPolicy?.requirements?.deviceSecurity?.antivirusEnabled || true
+                    }
                   />
                 }
                 label="Require Antivirus"
@@ -492,14 +527,16 @@ export default function Policies() {
             <Grid item xs={12} sm={6}>
               <FormControlLabel
                 control={
-                  <Switch 
-                    defaultChecked={selectedPolicy?.requirements?.deviceSecurity?.screenLockEnabled || true} 
+                  <Switch
+                    defaultChecked={
+                      selectedPolicy?.requirements?.deviceSecurity?.screenLockEnabled || true
+                    }
                   />
                 }
                 label="Require Screen Lock"
               />
             </Grid>
-            
+
             {/* Authentication Section */}
             <Grid item xs={12}>
               <Typography variant="h6" sx={{ mt: 2, mb: 1 }}>
@@ -510,8 +547,10 @@ export default function Policies() {
             <Grid item xs={12} sm={6}>
               <FormControlLabel
                 control={
-                  <Switch 
-                    defaultChecked={selectedPolicy?.requirements?.authentication?.mfaRequired || true} 
+                  <Switch
+                    defaultChecked={
+                      selectedPolicy?.requirements?.authentication?.mfaRequired || true
+                    }
                   />
                 }
                 label="Require Multi-Factor Authentication"
@@ -524,7 +563,9 @@ export default function Policies() {
                   labelId="password-complexity-label"
                   id="passwordComplexity"
                   label="Password Complexity"
-                  defaultValue={selectedPolicy?.requirements?.authentication?.passwordComplexity || 'High'}
+                  defaultValue={
+                    selectedPolicy?.requirements?.authentication?.passwordComplexity || 'High'
+                  }
                 >
                   <MenuItem value="Low">Low</MenuItem>
                   <MenuItem value="Medium">Medium</MenuItem>
@@ -533,7 +574,7 @@ export default function Policies() {
                 </Select>
               </FormControl>
             </Grid>
-            
+
             {/* Network Security Section */}
             <Grid item xs={12}>
               <Typography variant="h6" sx={{ mt: 2, mb: 1 }}>
@@ -544,8 +585,10 @@ export default function Policies() {
             <Grid item xs={12} sm={6}>
               <FormControlLabel
                 control={
-                  <Switch 
-                    defaultChecked={selectedPolicy?.requirements?.networkSecurity?.vpnRequired || false} 
+                  <Switch
+                    defaultChecked={
+                      selectedPolicy?.requirements?.networkSecurity?.vpnRequired || false
+                    }
                   />
                 }
                 label="Require VPN Connection"
@@ -555,7 +598,9 @@ export default function Policies() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseDialog}>Cancel</Button>
-          <Button onClick={handleSavePolicy} variant="contained">Save Policy</Button>
+          <Button onClick={handleSavePolicy} variant="contained">
+            Save Policy
+          </Button>
         </DialogActions>
       </Dialog>
     </Layout>

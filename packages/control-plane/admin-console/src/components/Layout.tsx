@@ -1,21 +1,21 @@
 import React, { useState, ReactNode } from 'react';
-import { 
-  AppBar, 
-  Box, 
-  CssBaseline, 
-  Divider, 
-  Drawer, 
-  IconButton, 
-  List, 
-  ListItem, 
-  ListItemButton, 
-  ListItemIcon, 
-  ListItemText, 
-  Toolbar, 
+import {
+  AppBar,
+  Box,
+  CssBaseline,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
   Typography,
   Avatar,
   Menu,
-  MenuItem
+  MenuItem,
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -24,7 +24,7 @@ import {
   Security as SecurityIcon,
   People as PeopleIcon,
   Settings as SettingsIcon,
-  Logout as LogoutIcon
+  Logout as LogoutIcon,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -69,16 +69,11 @@ export default function Layout({ children }: LayoutProps) {
       </Toolbar>
       <Divider />
       <List>
-        {menuItems.map((item) => (
+        {menuItems.map(item => (
           <ListItem key={item.text} disablePadding>
             <Link href={item.href} passHref legacyBehavior>
-              <ListItemButton 
-                component="a"
-                selected={router.pathname === item.href}
-              >
-                <ListItemIcon>
-                  {item.icon}
-                </ListItemIcon>
+              <ListItemButton component="a" selected={router.pathname === item.href}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>
             </Link>

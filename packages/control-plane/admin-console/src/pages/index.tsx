@@ -1,21 +1,44 @@
 import { useState } from 'react';
-import { Box, Container, Grid, Typography, Paper, Card, CardContent, CardHeader, Button } from '@mui/material';
-import { DevicesOutlined, SecurityOutlined, PeopleOutlined, SettingsOutlined } from '@mui/icons-material';
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Paper,
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+} from '@mui/material';
+import {
+  DevicesOutlined,
+  SecurityOutlined,
+  PeopleOutlined,
+  SettingsOutlined,
+} from '@mui/icons-material';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
 
 // Dashboard statistics component
-const StatCard = ({ title, value, icon, color }: { title: string; value: string; icon: React.ReactNode; color: string }) => (
+const StatCard = ({
+  title,
+  value,
+  icon,
+  color,
+}: {
+  title: string;
+  value: string;
+  icon: React.ReactNode;
+  color: string;
+}) => (
   <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
     <CardContent>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Typography variant="h6" component="div" color="text.secondary">
           {title}
         </Typography>
-        <Box sx={{ backgroundColor: `${color}20`, p: 1, borderRadius: '50%' }}>
-          {icon}
-        </Box>
+        <Box sx={{ backgroundColor: `${color}20`, p: 1, borderRadius: '50%' }}>{icon}</Box>
       </Box>
       <Typography variant="h4" component="div">
         {value}
@@ -30,15 +53,15 @@ export default function Home() {
     devices: {
       total: 124,
       compliant: 118,
-      nonCompliant: 6
+      nonCompliant: 6,
     },
     users: {
       total: 156,
-      active: 143
+      active: 143,
     },
     policies: {
-      total: 12
-    }
+      total: 12,
+    },
   });
 
   return (
@@ -57,35 +80,35 @@ export default function Home() {
         <Grid container spacing={3}>
           {/* Stats Cards */}
           <Grid item xs={12} md={3}>
-            <StatCard 
-              title="Total Devices" 
-              value={stats.devices.total.toString()} 
-              icon={<DevicesOutlined sx={{ color: '#1976d2' }} />} 
-              color="#1976d2" 
+            <StatCard
+              title="Total Devices"
+              value={stats.devices.total.toString()}
+              icon={<DevicesOutlined sx={{ color: '#1976d2' }} />}
+              color="#1976d2"
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <StatCard 
-              title="Compliant Devices" 
-              value={stats.devices.compliant.toString()} 
-              icon={<SecurityOutlined sx={{ color: '#2e7d32' }} />} 
-              color="#2e7d32" 
+            <StatCard
+              title="Compliant Devices"
+              value={stats.devices.compliant.toString()}
+              icon={<SecurityOutlined sx={{ color: '#2e7d32' }} />}
+              color="#2e7d32"
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <StatCard 
-              title="Active Users" 
-              value={stats.users.active.toString()} 
-              icon={<PeopleOutlined sx={{ color: '#ed6c02' }} />} 
-              color="#ed6c02" 
+            <StatCard
+              title="Active Users"
+              value={stats.users.active.toString()}
+              icon={<PeopleOutlined sx={{ color: '#ed6c02' }} />}
+              color="#ed6c02"
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <StatCard 
-              title="Security Policies" 
-              value={stats.policies.total.toString()} 
-              icon={<SettingsOutlined sx={{ color: '#9c27b0' }} />} 
-              color="#9c27b0" 
+            <StatCard
+              title="Security Policies"
+              value={stats.policies.total.toString()}
+              icon={<SettingsOutlined sx={{ color: '#9c27b0' }} />}
+              color="#9c27b0"
             />
           </Grid>
 
@@ -125,7 +148,8 @@ export default function Home() {
                 • User john.doe@example.com logged in from a new device (10 minutes ago)
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                • Device MacBook-Pro-123 failed compliance check: Disk encryption not enabled (30 minutes ago)
+                • Device MacBook-Pro-123 failed compliance check: Disk encryption not enabled (30
+                minutes ago)
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 • New policy "Engineering Team Access" created by admin@example.com (2 hours ago)
