@@ -1,0 +1,36 @@
+{
+  "name": "openztna-admin-console",
+  "version": "1.0.0",
+  "description": "Administrative Console for OpenZTNA Control Plane",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.0.1",
+    "@mui/material": "^7.0.1",
+    "@mui/x-data-grid": "^7.28.2",
+    "axios": "^1.8.4",
+    "chart.js": "^4.4.8",
+    "next": "^15.2.4",
+    "next-auth": "^4.24.11",
+    "react": "^19.1.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.55.0",
+    "swr": "^2.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "^9.23.0",
+    "eslint-config-next": "^15.2.4",
+    "typescript": "^5.8.2"
+  }
+}

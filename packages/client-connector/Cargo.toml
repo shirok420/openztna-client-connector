@@ -1,0 +1,70 @@
+[package]
+name = "openztna-client-connector"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "OpenZTNA Client Connector - Zero Trust Network Access client agent"
+
+[dependencies]
+tokio = { version = "1.28", features = ["full"] }
+actix-web = "4.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+log = "0.4"
+env_logger = "0.10"
+anyhow = "1.0"
+thiserror = "1.0"
+config = "0.13"
+reqwest = { version = "0.11", features = ["json"] }
+oauth2 = "4.4"
+chrono = { version = "0.4", features = ["serde"] }
+os_info = "3.7"
+hostname = "0.3"
+
+[package.metadata.deb]
+maintainer = "OpenZTNA Contributors"
+copyright = "2025, OpenZTNA Contributors"
+license-file = ["../../LICENSE", "0"]
+depends = "$auto"
+section = "net"
+priority = "optional"
+assets = [
+    ["target/release/openztna-client-connector", "usr/bin/", "755"],
+    ["README.md", "usr/share/doc/openztna-client-connector/README", "644"],
+]
+conf-files = ["/etc/openztna/client-connector.toml"]
+maintainer-scripts = "debian/"
+
+[package.metadata.rpm]
+package-name = "openztna-client-connector"
+license = "Apache-2.0"
+requires = []
+
+[package.metadata.rpm.cargo]
+buildflags = ["--release"]
+
+[package.metadata.rpm.targets]
+openztna-client-connector = { path = "/usr/bin/openztna-client-connector" }
+
+[package.metadata.wix]
+name = "OpenZTNA Client Connector"
+manufacturer = "OpenZTNA Contributors"
+product-name = "OpenZTNA Client Connector"
+product-version = "1.0.0"
+license = false
+
+[package.metadata.bundle]
+name = "OpenZTNA Client Connector"
+identifier = "org.openztna.client-connector"
+icon = ["../../website/static/img/openztna-logo.png"]
+version = "1.0.0"
+copyright = "Copyright (c) 2025 OpenZTNA Contributors. All rights reserved."
+category = "Utility"
+short_description = "Zero Trust Network Access client for secure endpoint protection"
+long_description = """
+OpenZTNA Client Connector is a free, open-source Zero Trust Network Access (ZTNA) 
+client that protects endpoints and secures access to enterprise resources. It implements 
+the "never trust, always verify" principle to protect your organization's applications and data.
+"""

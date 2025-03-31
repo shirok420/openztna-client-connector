@@ -1,0 +1,8 @@
+{
+  "label": "Features",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Explore the features of the OpenZTNA Client Connector that provide secure, efficient, and user-friendly Zero Trust Network Access."
+  }
+}

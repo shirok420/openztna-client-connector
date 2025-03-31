@@ -1,0 +1,43 @@
+# Rust build artifacts
+/target/
+**/target/
+Cargo.lock
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment files
+.env
+.env.*
+
+# Log files
+*.log
+logs/
+
+# Configuration files with sensitive information
+config/*.local.toml
+config/*.secret.toml
+
+# Generated documentation
+/doc/
+
+# Docusaurus generated files
+website/.docusaurus/
+website/build/
+website/node_modules/
+
+# Test artifacts
+coverage/
+
+# Temporary files
+tmp/
+temp/
+
+# OS specific files
+.DS_Store
+Thumbs.db

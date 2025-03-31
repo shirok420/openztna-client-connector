@@ -1,0 +1,8 @@
+{
+  "label": "Components",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Detailed information about the internal components of the OpenZTNA Client Connector: Authentication Module, Device Assessment Engine, Tunneling Module, Policy Enforcer, and Local Proxy."
+  }
+}
