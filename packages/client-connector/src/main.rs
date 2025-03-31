@@ -4,9 +4,6 @@ use serde::{Deserialize, Serialize};
 use std::{io, sync::Arc};
 use tokio::sync::RwLock;
 use config::{Config, ConfigError, File};
-use chrono;
-use os_info;
-use hostname;
 
 // Configuration structures
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -74,7 +71,8 @@ impl AppConfig {
 
 // Application state
 struct AppState {
-    config: AppConfig,
+    #[allow(dead_code)]
+    config: AppConfig, // Kept for future use
     connection_status: RwLock<ConnectionStatus>,
 }
 
@@ -83,6 +81,7 @@ enum ConnectionStatus {
     Disconnected,
     Connecting,
     Connected,
+    #[allow(dead_code)]
     Failed(String),
 }
 
@@ -228,7 +227,8 @@ async fn disconnect(data: web::Data<Arc<AppState>>) -> impl Responder {
 // Module for device security assessment
 mod device_assessment {
     use super::*;
-    
+
+    #[allow(dead_code)]
     pub async fn assess_device_security(config: &DeviceAssessmentConfig) -> Result<DeviceSecurityStatus, anyhow::Error> {
         // In a real implementation, this would:
         // 1. Check OS version against minimum requirements
@@ -274,7 +274,8 @@ mod auth {
     use oauth2::{
         basic::BasicClient, AuthUrl, ClientId, ClientSecret, RedirectUrl, TokenUrl,
     };
-    
+
+    #[allow(dead_code)]
     pub fn create_oauth_client(config: &AuthConfig) -> Result<BasicClient, anyhow::Error> {
         let client_id = ClientId::new(config.client_id.clone());
         let client_secret = ClientSecret::new(config.client_secret.clone());
@@ -295,7 +296,8 @@ mod auth {
 // Module for tunneling
 mod tunneling {
     use super::*;
-    
+
+    #[allow(dead_code)]
     pub async fn establish_tunnel(config: &TunnelingConfig) -> Result<(), anyhow::Error> {
         // In a real implementation, this would:
         // 1. Set up a WireGuard or OpenVPN tunnel
@@ -309,7 +311,8 @@ mod tunneling {
         
         Ok(())
     }
-    
+
+    #[allow(dead_code)]
     pub async fn tear_down_tunnel() -> Result<(), anyhow::Error> {
         // In a real implementation, this would:
         // 1. Close the tunnel
